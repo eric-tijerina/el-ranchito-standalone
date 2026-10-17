@@ -1,0 +1,16 @@
+{
+  "description": "El Ranchito RV Park site + /park record-book backend on Cloudflare Pages + D1. Off Render.",
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  },
+  "name": "el-ranchito-rv-park",
+  "private": true,
+  "scripts": {
+    "db:migrate": "wrangler d1 execute el-ranchito-park --file=./schema.sql",
+    "db:migrate:remote": "wrangler d1 execute el-ranchito-park --file=./schema.sql --remote",
+    "deploy": "wrangler pages deploy public",
+    "dev": "wrangler pages dev public --d1=PARK_DB=el-ranchito-park --local"
+  },
+  "version": "1.0.0",
+  "type": "module"
+}

@@ -1,0 +1,21 @@
+# El Ranchito RV Park — Cloudflare Pages (frontend + /park backend in one project)
+# Deploy: see README.md. No Render, no free-hours suspension.
+name = "el-ranchito-rv-park"
+pages_build_output = "public"
+compatibility_date = "2026-10-16"
+
+# D1 database for the record book + auth hash + token secret.
+# Create it once with: npx wrangler d1 create el-ranchito-park
+# Then paste the returned database_id below (replace PLACEHOLDER).
+[[d1_databases]]
+binding = "PARK_DB"
+database_name = "el-ranchito-park"
+database_id = "PLACEHOLDER - paste from `wrangler d1 create el-ranchito-park`"
+
+# One-time setup secret (his-hands, Cloudflare dashboard -> Settings -> Variables):
+#   PARK_PASSWORD = the SAME park password Eric + Andrea already use.
+# The Worker derives + stores a PBKDF2 hash in D1 on first login, then Eric
+# deletes PARK_PASSWORD from env. Password never goes through chat/files.
+# Do NOT commit a real password here. Leave unset after setup.
+# [vars]
+# PARK_PASSWORD = ""
